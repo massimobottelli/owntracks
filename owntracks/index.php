@@ -58,23 +58,20 @@ mysqli_close($conn);
   </head>
   <body>
     <div class="container">
-      <div id="home">
-        <form>
-          <input type="hidden" name="view" />
-          <input type="button" value="Owntracks" class="button" onclick="reloadPage('owntracks')">
-      </div>
-      <div id="heatmap">
-      <input type="button" value="Heatmap" class="button" onclick="reloadPage('heatmap')">
+      <form>
+        <input type="hidden" name="view" />
+        <?php if ($view != "owntracks") { ?>
+        <input type="button" value="Owntracks" class="button" onclick="reloadPage('owntracks')">
+        <?php } else { ?>
+        <input type="button" value="Heatmap" class="button" onclick="reloadPage('heatmap')">
+  <?php } ?>
       </form>
-      </div>      
-      <div id="date">
-        <form name="datepicker" class="datepicker" method="POST"> 
-          <input type="button" value="&lt;&lt;" class="button" onclick="previousDay()">
-          <input type="text" id="datepicker" name="date" 
-            value="<?php if(isset($date)){ echo $date;} ?>" onchange="submitForm()">
-          <input type="button" value="&gt;&gt;" class="button" onclick="nextDay()">
-        </form>
-      </div>
+      <form name="datepicker" class="datepicker" method="POST"> 
+        <input type="button" value="&lt;&lt;" class="button" onclick="previousDay()">
+        <input type="text" id="datepicker" name="date" 
+          value="<?php if(isset($date)){ echo $date;} ?>" onchange="submitForm()">
+        <input type="button" value="&gt;&gt;" class="button" onclick="nextDay()">
+      </form>
     </div>
     <div id="map"></div>
     <script>
